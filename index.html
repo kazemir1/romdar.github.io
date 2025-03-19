@@ -1,8 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мой сайт</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<h2>hi</h2>
+  <header class="header" id="header">
+    <!-- Меню слева -->
+    <button class="menu-icon">
+    <!-- <div class="menu-icon">-->
+      <img src="C:\Users\ogfxc\Desktop\menu.png" alt="Меню"> <!-- Заглушка для иконки меню -->
+      <span class="menu-text">Меню</span>
+    <!--</div>-->
+    </button>
+
+    <nav class="sidebar">
+    <div class="menu-header">
+        <h3>Lingerie Boutique</h3>
+        <button class="close-btn">×</button>
+    </div>
+    <ul class="menu-list">
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Новинки сезона</a></li>
+        <li><a href="#">Бюстгальтеры</a></li>
+        <li><a href="#">Трусики</a></li>
+        <li><a href="#">Комплекты</a></li>
+        <li><a href="#">Корсеты</a></li>
+        <li><a href="#">Акции</a></li>
+        <li><a href="#">Подбор по размеру</a></li>
+        <li><a href="#">Контакты</a></li>
+    </ul>
+</nav>
+
+<div class="overlay"></div>
+
+    <!-- Логотип по центру -->
+    <div class="logo">
+      <img src="C:\Users\ogfxc\Desktop\lg2.png" alt="Логотип">
+    </div>
+
+    <!-- Корзина справа -->
+    <div class="cart">
+      <img src="C:\Users\ogfxc\Desktop\bag.png" alt="Корзина">
+      <span class="cart-counter">0</span>
+    </div>
+  </header>
+
+   <!-- Фотография товара -->
+  <section class="product-hero">
+    <img src="C:\Users\ogfxc\Desktop\ph2.jpg" alt="Фото товара" class="product-image">
+    <div class="product-info">
+      <p class="product-description">Элегантный дизайн, мощь и роскошь</p>
+      <a href="/product-page" class="product-name">Bentley Continental GT</a>
+    </div>
+  </section>
+
+   <section class="text-block">
+    <h1 class="text-title">В ROMDAR, всегда теплая погода: Петербург в любви.</h1>
+    <p class="text-content">
+      Здесь вы найдете уютные уголки, вдохновение и атмосферу, которая согревает даже в самые холодные дни. ROMDAR — это место, где каждый момент становится особенным.
+    </p>
+  </section>
+
+    <!-- Блок с двумя фотографиями и текстом -->
+<section class="two-photos">
+  <div class="photo-container">
+    <div class="photo-left">
+      <img src="C:\Users\ogfxc\Desktop\ph.jpg" alt="Фото 1">
+    </div>
+    <div class="photo-right">
+      <img src="C:\Users\ogfxc\Desktop\ph2.jpg" alt="Фото 2">
+    </div>
+  </div>
+  <div class="photo-text">
+    <h2 class="photo-title">Bentley Continental GT</h2>
+    <p class="photo-description">Элегантный дизайн, мощь и роскошь. Идеальный выбор для тех, кто ценит стиль и комфорт.</p>
+    <a href="/product-page" class="photo-link">Подробнее</a>
+  </div>
+</section>
+   <!-- Блок с полноразмерной фотографией -->
+  <section class="full-photo">
+    <img src="C:\Users\ogfxc\Desktop\ph2.jpg" alt="Полноразмерная фотография">
+  </section>
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Колонка с контактной информацией -->
+    <div class="footer-column">
+      <h3 class="footer-title">Контакты</h3>
+      <ul class="footer-list">
+        <li><strong>Адрес:</strong> Санкт-Петербург, ул. Примерная, д. 123</li>
+        <li><strong>Телефон:</strong> <a href="tel:+78121234567">+7 (812) 123-45-67</a></li>
+        <li><strong>Email:</strong> <a href="mailto:info@lingerieboutique.ru">info@lingerieboutique.ru</a></li>
+        <li><strong>Часы работы:</strong> Пн-Пт: 10:00 - 20:00, Сб-Вс: 11:00 - 18:00</li>
+      </ul>
+    </div>
+
+    <!-- Колонка с полезными ссылками -->
+    <div class="footer-column">
+      <h3 class="footer-title">Полезное</h3>
+      <ul class="footer-list">
+        <li><a href="#">Доставка и оплата</a></li>
+        <li><a href="#">Возврат и обмен</a></li>
+        <li><a href="#">Политика конфиденциальности</a></li>
+        <li><a href="#">Часто задаваемые вопросы</a></li>
+      </ul>
+    </div>
+
+    <!-- Колонка с социальными сетями -->
+    <div class="footer-column">
+      <h3 class="footer-title">Мы в соцсетях</h3>
+      <ul class="footer-list social-links">
+        <li><a href="#" target="_blank" class="social-link"><img src="icons/instagram.svg" alt="Instagram"></a></li>
+        <li><a href="#" target="_blank" class="social-link"><img src="icons/facebook.svg" alt="Facebook"></a></li>
+        <li><a href="#" target="_blank" class="social-link"><img src="icons/vk.svg" alt="VK"></a></li>
+        <li><a href="#" target="_blank" class="social-link"><img src="icons/telegram.svg" alt="Telegram"></a></li>
+      </ul>
+    </div>
+
+    <!-- Колонка с формой подписки -->
+    <div class="footer-column">
+      <h3 class="footer-title">Подпишитесь на новости</h3>
+      <p class="footer-text">Узнавайте первыми о новых коллекциях и акциях.</p>
+      <form class="subscribe-form">
+        <input type="email" placeholder="Ваш email" required>
+        <button type="submit">Подписаться</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Копирайт -->
+  <div class="footer-bottom">
+    <p>&copy; 2023 Lingerie Boutique. Все права защищены.</p>
+  </div>
+</footer>
+  <script src="scripts.js"></script>
 </body>
 </html>
