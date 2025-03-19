@@ -1,0 +1,649 @@
+@font-face {
+    font-family: 'futuralightc-italic'; /* Название шрифта */
+    src: url('fonts/futuralightc-italic.woff2') format('woff2'), /* Формат для современных браузеров */
+         url('fonts/futuralightc-italic.woff') format('woff'); /* Формат для старых браузеров */
+    font-weight: normal; /* Насыщенность шрифта */
+    font-style: normal; /* Стиль шрифта */
+}
+/* Сброс отступов по умолчанию */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'futuralightc-italic', sans-serif;
+}
+
+/* Стили для хедера */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(250, 236, 240, 0.7); /* Начальная непрозрачность 70% */
+  padding: 15px 30px;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed; /* Хедер прилипает к верху */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Хедер поверх всего */
+  transition: background-color 0.3s ease; /* Плавное изменение фона */
+}
+
+/* Стили для хедера при прокрутке */
+.header.scrolled {
+  background-color: rgba(250, 236, 240, 1); /* Непрозрачность 100% */
+}
+/* Основные стили для хедера */
+/*.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(250, 236, 240, 0.8); /* Цвет #faecf0 с непрозрачностью 70% */
+ /* padding: 15px 30px;
+  font-family: 'FuturaLightC', serif; /* Шрифт с британским акцентом */
+ /* width: 100%; /* Хедер на всю ширину */
+  /*box-sizing: border-box; /* Чтобы padding не влиял на ширину */
+  /*position: relative; /* Чтобы хедер был выше фотографии */
+ /* z-index: 2; /* Хедер поверх фотографии */
+/*}*/
+
+/* Стили для иконки меню */
+button.menu-icon {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-icon img {
+  height: 20px; /* Размер иконки меню */
+  width: auto;
+  margin-top: 25px;
+}
+
+.menu-icon .menu-text {
+  margin-left: 10px;
+  margin-top: 25px;
+  font-size: 16px;
+  color: #000; /* Черный цвет текста */
+  font-weight: bold; /* Жирный шрифт для важности */
+}
+
+/* CSS */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -33%;
+    width: 33%;
+    height: 100%;
+    background: #fff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    z-index: 1001;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 209, 220, 0.7);
+    backdrop-filter: blur(2px);
+    display: none;
+    z-index: 999;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ffe5ec;
+}
+
+.menu-list {
+    padding: 20px;
+}
+
+.menu-list li {
+    margin: 15px 0;
+}
+
+.menu-list a {
+    color: #5e2d3b;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: 0.2s;
+}
+
+.menu-list a:hover {
+    color: #ff6b8d;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #5e2d3b;
+}
+
+/* Стили для логотипа */
+.logo img {
+  height: 70px; /* Высота логотипа */
+  width: auto; /* Ширина подстраивается автоматически */
+
+
+}
+
+/* Стили для корзины */
+.cart {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cart img {
+  height: 20px; /* Размер иконки корзины */
+  width: auto;
+  margin-top: 25px;
+}
+
+.cart .cart-counter {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #000; /* Черный цвет для счетчика */
+  font-weight: bold; /* Жирный шрифт */
+  margin-top: 25px;
+}
+
+/* Стили для фотографии товара */
+.product-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* На всю высоту экрана */
+  overflow: hidden;
+  margin-top: -150px; /* Фотография заходит за хедер */
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Чтобы фото растягивалось на весь экран */
+}
+
+/* Стили для подписи товара */
+.product-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7); /* Прямоугольный фон для текста */
+  padding: 15px 20px;
+  border-radius: 0; /* Убираем закругления */
+}
+
+.product-description {
+  margin: 0;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.product-name {
+  margin: 5px 0 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.product-name:hover {
+  text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+/* Стили для блока с текстом */
+.text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирование по горизонтали */
+  justify-content: center; /* Центрирование по вертикали */
+  text-align: center; /* Центрирование текста */
+  padding: 50px 20px; /* Отступы сверху/снизу и слева/справа */
+  background-color: #f8f8f8; /* Светлый фон */
+  color: #333; /* Цвет текста */
+}
+
+/* Заголовок */
+.text-title {
+  font-size: 32px; /* Крупный шрифт */
+  font-weight: bold; /* Жирный шрифт */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Основной текст */
+.text-content {
+  font-size: 18px; /* Меньший шрифт */
+  line-height: 1.6; /* Межстрочный интервал */
+  max-width: 800px; /* Ограничение ширины текста */
+}
+
+/* Дополнительный контент для прокрутки */
+.additional-content {
+  padding: 100px 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+/* Стили для блока с двумя фотографиями */
+.two-photos {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Левая фотография */
+.photo-left {
+  flex: 1;
+  overflow: hidden;
+}
+
+.photo-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Правая фотография */
+.photo-right {
+  flex: 1;
+  overflow: hidden;
+}
+
+.photo-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+/* Текст, который появляется при прокрутке */
+.photo-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  opacity: 0; /* Начальная непрозрачность */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.photo-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.photo-description {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.photo-link {
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #fff;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.photo-link:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Класс для появления текста */
+.photo-text.visible {
+  opacity: 1;
+  transform: translate(-50%, -60%); /* Поднимаем текст немного выше */
+}
+
+/* Стили для блока с полноразмерной фотографией */
+.full-photo {
+  width: 100%;
+  height: 100vh; /* Высота на весь экран */
+  overflow: hidden;
+  position: relative;
+}
+
+.full-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Растягиваем фото, чтобы оно заполнило блок */
+}
+
+/* Основные стили для футера */
+.footer {
+  background-color: #f8f8f8; /* Светлый фон */
+  color: #333; /* Цвет текста */
+  padding: 40px 20px;
+  border-top: 1px solid #e0e0e0; /* Граница сверху */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #5e2d3b; /* Цвет заголовка */
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: 10px;
+}
+
+.footer-list a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-list a:hover {
+  color: #ff6b8d; /* Цвет при наведении */
+}
+
+.social-links {
+  display: flex;
+  gap: 10px;
+}
+
+.social-link img {
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.3s ease;
+}
+
+.social-link img:hover {
+  opacity: 0.7;
+}
+
+.subscribe-form {
+  display: flex;
+  gap: 10px;
+}
+
+.subscribe-form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.subscribe-form button {
+  padding: 10px 20px;
+  background-color: #ff6b8d; /* Розовый цвет кнопки */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.subscribe-form button:hover {
+  background-color: #ff3b6d; /* Темно-розовый цвет при наведении */
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0; /* Граница сверху */
+  font-size: 14px;
+  color: #666;
+}
+
+/* Медиа-запросы для смартфонов */
+@media (max-width: 768px) {
+  /* Хедер */
+  .header {
+    padding: 10px 15px; /* Уменьшаем отступы */
+  }
+
+  .menu-icon img {
+    height: 25px; /* Уменьшаем размер иконки меню */
+  }
+
+  .menu-icon .menu-text {
+    font-size: 14px; /* Уменьшаем размер текста меню */
+  }
+    .sidebar {
+        width: 100%; /* Меню на всю ширину */
+        left: -100%; /* Скрываем меню за пределами экрана */
+    }
+
+    .sidebar.active {
+        left: 0; /* Показываем меню */
+    }
+}
+
+  .logo img {
+    height: 40px; /* Уменьшаем размер логотипа */
+  }
+
+  .cart img {
+    height: 25px; /* Уменьшаем размер иконки корзины */
+  }
+
+  .cart .cart-counter {
+    font-size: 14px; /* Уменьшаем размер текста счетчика */
+  }
+
+  /* Фотография товара */
+  .product-hero {
+    margin-top: -60px; /* Уменьшаем отступ для хедера */
+  }
+
+  .product-info {
+    padding: 10px 15px; /* Уменьшаем отступы */
+  }
+
+  .product-description {
+    font-size: 16px; /* Уменьшаем размер текста */
+  }
+
+  .product-name {
+    font-size: 20px; /* Уменьшаем размер текста */
+  }
+
+  /* Блок с текстом */
+  .text-block {
+    padding: 30px 15px; /* Уменьшаем отступы */
+  }
+
+  .text-title {
+    font-size: 24px; /* Уменьшаем размер заголовка */
+  }
+
+  .text-content {
+    font-size: 16px; /* Уменьшаем размер текста */
+  }
+
+  /* Блок с двумя фотографиями */
+  .two-photos {
+    flex-direction: column; /* Фотографии одна под другой */
+    height: auto;
+  }
+
+  .photo-left, .photo-right {
+    height: 50vh; /* Каждая фотография занимает половину экрана */
+  }
+
+  .photo-text {
+    font-size: 14px; /* Уменьшаем размер текста */
+    margin-top: 150px;
+  }
+
+  .photo-title {
+    font-size: 24px; /* Уменьшаем размер заголовка */
+  }
+
+  .photo-description {
+    font-size: 16px; /* Уменьшаем размер текста */
+  }
+
+  .photo-link {
+    font-size: 14px; /* Уменьшаем размер текста */
+    padding: 8px 16px; /* Уменьшаем отступы */
+  }
+
+  /* Блок с полноразмерной фотографией */
+  .full-photo {
+    height: 50vh; /* Уменьшаем высоту */
+  }
+}
+/* Футтер*/
+ .footer {
+    padding: 30px 15px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-column {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 25px;
+    text-align: left;
+  }
+
+  .footer-title {
+    font-size: 17px;
+    margin-bottom: 12px;
+    position: relative;
+    padding-bottom: 8px;
+  }
+
+  .footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    background: #ff6b8d;
+  }
+
+  .footer-list li {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Контактные данные */
+  .footer-list strong {
+    display: block;
+    margin-top: 5px;
+    color: #5e2d3b;
+  }
+
+  /* Социальные иконки */
+  .social-links {
+    justify-content: flex-start;
+    gap: 15px;
+  }
+
+  .social-link img {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Форма подписки */
+  .subscribe-form {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .subscribe-form input {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .subscribe-form button {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  /* Копирайт */
+  .footer-bottom {
+    font-size: 12px;
+    margin-top: 15px;
+    padding-top: 15px;
+  }
+
+  /* Специфичные правки для длинных номеров */
+  a[href^="tel:"] {
+    word-break: break-all;
+    display: inline-block;
+    padding: 2px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-list li {
+    font-size: 13px;
+  }
+
+  .footer-title {
+    font-size: 16px;
+  }
+
+  .social-link img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .subscribe-form input,
+  .subscribe-form button {
+    font-size: 13px;
+  }
+}
+ 
