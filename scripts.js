@@ -1,42 +1,28 @@
+// Обработка клика по кнопке "Продолжить"
+const continueButton = document.querySelector('.continue-button');
+if (continueButton) {
+    continueButton.addEventListener('click', () => {
+        alert('Вы нажали "Продолжить"!');
+        // Здесь можно добавить переход на следующую страницу
+    });
+}
 
-// Получаем хедер
-const header = document.getElementById('header');
+// Обработка свайпа на мобильных устройствах
+let touchStartX = 0;
+let touchEndX = 0;
 
-// Функция для изменения стилей хедера при прокрутке
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) { // Если прокрутили больше 50px
-    header.classList.add('scrolled'); // Добавляем класс scrolled
-  } else {
-    header.classList.remove('scrolled'); // Убираем класс scrolled
-  }
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
 });
 
-// Получаем блок с текстом
-const photoText = document.querySelector('.photo-text');
-
-// Функция для появления текста при прокрутке
-window.addEventListener('scroll', () => {
-  const twoPhotos = document.querySelector('.two-photos');
-  const twoPhotosRect = twoPhotos.getBoundingClientRect();
-
-  // Если блок с фотографиями виден на экране
-  if (twoPhotosRect.top < window.innerHeight && twoPhotosRect.bottom > 0) {
-    const scrollProgress = (window.innerHeight - twoPhotosRect.top) / window.innerHeight;
-    photoText.style.opacity = scrollProgress; // Плавное появление текста
-    photoText.style.transform = `translate(-50%, ${-50 + scrollProgress * -10}%)`; // Плавное смещение текста
-  }
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
 });
 
-// JavaScript меню
-document.querySelector('.menu-icon').addEventListener('click', () => {
-    document.querySelector('.sidebar').classList.add('active');
-    document.querySelector('.overlay').style.display = 'block';
-});
-
-document.querySelector('.overlay').addEventListener('click', closeMenu);
-document.querySelector('.close-btn').addEventListener('click', closeMenu);
-
-function closeMenu() {
-    document.querySelector('.sidebar').classList.remove('active');
-    document.querySelector('.overlay').style.display = 'none';
+function handleSwipe() {
+    if (touchEndX > touchStartX && touchEndX - touchStartX > 50) {
+        alert('Свайп вправо зарегистрирован!');
+        // Здесь можно добавить переход на следующую страницу
+    }
 }
