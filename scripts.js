@@ -1,4 +1,4 @@
-// Обработка клика по кнопке "Продолжить"
+// Обработка клика по кнопке "Продолжить" (ПК)
 const continueButton = document.querySelector('.continue-button');
 if (continueButton) {
     continueButton.addEventListener('click', () => {
@@ -8,21 +8,40 @@ if (continueButton) {
 }
 
 // Обработка свайпа на мобильных устройствах
+const swipeTrack = document.querySelector('.swipe-track');
+const swipeFill = document.querySelector('.swipe-fill');
+const swipeText = document.querySelector('.swipe-text');
+
 let touchStartX = 0;
 let touchEndX = 0;
+let isSwiped = false;
 
-document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+swipeTrack.addEventListener('touchstart', (e) => {
+    if (isSwiped) return; // Если свайп уже выполнен, ничего не делаем
+    touchStartX = e.changedTouches[0].clientX;
 });
 
-document.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
+swipeTrack.addEventListener('touchmove', (e) => {
+    if (isSwiped) return;
+    touchEndX = e.changedTouches[0].clientX;
+    const distance = touchEndX - touchStartX;
+    if (distance > 0) {
+        const fillWidth = Math.min((distance / swipeTrack.offsetWidth) * 100, 100);
+        swipeFill.style.width = `${fillWidth}%`;
+    }
 });
 
-function handleSwipe() {
-    if (touchEndX > touchStartX && touchEndX - touchStartX > 50) {
+swipeTrack.addEventListener('touchend', (e) => {
+    if (isSwiped) return;
+    touchEndX = e.changedTouches[0].clientX;
+    const distance = touchEndX - touchStartX;
+    if (distance > swipeTrack.offsetWidth * 0.5) { // Свайп на 50% ширины
+        swipeFill.style.width = '100%';
+        swipeText.style.color = 'white';
+        isSwiped = true;
         alert('Свайп вправо зарегистрирован!');
         // Здесь можно добавить переход на следующую страницу
+    } else {
+        swipeFill.style.width = '0%';
     }
-}
+});

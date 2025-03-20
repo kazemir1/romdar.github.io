@@ -12,7 +12,7 @@ body, html {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end; /* Выравниваем элементы снизу */
     background-color: #f5f5f5;
 }
 
@@ -45,20 +45,21 @@ body, html {
 /* Стили для кнопки (ПК) */
 .button-container {
     position: absolute;
-    bottom: 20px;
+    bottom: 40px; /* Отступ снизу */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Точное центрирование */
     display: flex;
     justify-content: center;
     width: 100%;
-    display: block; /* По умолчанию видна на ПК */
 }
 
 .continue-button {
-    background-color: #ff7eb9; /* Нежно-розовый цвет */
+    background-color: #ffb3d9; /* Менее насыщенный розовый */
     border: none;
     border-radius: 50px;
-    width: 200px;
-    height: 60px;
-    font-size: 18px;
+    width: 500px; /* Ширина 500px */
+    height: 70px; /* Высота 70px */
+    font-size: 24px; /* Увеличим размер текста */
     color: white;
     cursor: pointer;
     position: relative;
@@ -67,52 +68,63 @@ body, html {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.continue-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.5s ease;
+.continue-button:hover {
+    background-color: #ff99cc; /* Мягкий розовый при наведении */
+    transform: scale(1.05); /* Легкое увеличение при наведении */
 }
-
-.continue-button:hover::before {
-    transform: translate(-50%, -50%) scale(1);
-}
-
 /* Стили для свайпа (мобильная версия) */
 .swipe-container {
     display: none; /* По умолчанию скрыта на ПК */
-    position: absolute;
-    bottom: 20px;
+    position: relative;
+    margin-bottom: 40px; /* Отступ снизу */
     width: 100%;
     text-align: center;
-    color: #ff7eb9;
-    font-size: 18px;
+}
+
+.swipe-track {
+    width: 500px; /* Такая же ширина, как у кнопки */
+    height: 70px; /* Такая же высота, как у кнопки */
+    border: 2px solid #ffb3d9; /* Контур как у кнопки */
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.1); /* Легкий фон для стиля */
+}
+
+.swipe-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #ffb3d9; /* Цвет заполнения */
+    transition: width 0.5s ease;
 }
 
 .swipe-text {
-    display: inline-block;
-    animation: swipeAnimation 2s infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffb3d9;
+    font-size: 18px;
+    white-space: nowrap;
+    z-index: 1;
+    animation: textGlow 2s infinite alternate;
 }
 
-@keyframes swipeAnimation {
+@keyframes textGlow {
     0% {
-        transform: translateX(-20px);
-        opacity: 0;
-    }
-    50% {
-        transform: translateX(20px);
-        opacity: 1;
+        opacity: 0.8;
+        text-shadow: 0 0 5px rgba(255, 179, 217, 0.5);
     }
     100% {
-        transform: translateX(-20px);
-        opacity: 0;
+        opacity: 1;
+        text-shadow: 0 0 20px rgba(255, 179, 217, 1);
     }
 }
 
