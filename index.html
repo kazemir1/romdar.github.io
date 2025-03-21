@@ -3,26 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
+    <title>Начальная страница</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="image-container">
-            <img src="images/ph2.jpg" alt="Главное изображение" class="main-image">
-        </div>
-        <!-- Кнопка для ПК -->
-        <div class="button-container">
-            <button class="continue-button">Продолжить</button>
-        </div>
-        <!-- Свайп для мобильных -->
+    <div class="fullscreen-image"></div>
+    <div class="overlay-image"></div> <!-- Вторая фотография (25% снизу) -->
+
+
+    <!-- Bottom Navigation Bar (Dynamic Island) -->
+    <div class="bottom-nav" id="bottomNav">
         <div class="swipe-container">
-            <div class="swipe-track">
-                <div class="swipe-fill"></div>
-                <span class="swipe-text">Свайпните вправо, чтобы продолжить</span>
-            </div>
+            <span id="dynamicText">Продолжить</span>
+          <!--   <div class="arrows"></div> Стрелочки -->
         </div>
+        <div class="swipe-fill" id="swipeFill"></div> <!-- Черный фон для заполнения -->
     </div>
-    <script src="scripts.js"></script>
+
+    <!-- Подключаем JavaScript -->
+    <script src="scriptы.js"></script>
 </body>
 </html>

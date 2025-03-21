@@ -1,140 +1,95 @@
-/* Общие стили */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow: hidden; /* Убираем возможность прокрутки */
     font-family: Arial, sans-serif;
-    overflow: hidden;
 }
 
-.container {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end; /* Выравниваем элементы снизу */
-    background-color: #f5f5f5;
+/* Основная фотография на весь экран */
+.fullscreen-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('images/ph2.jpg'); /* Замени на свою фотографию */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1; /* Основная фотография ниже второй */
 }
 
-/* Стили для изображения */
-.image-container {
-    position: absolute;
-    top: 0;
+/* Вторая фотография (25% снизу) */
+.overlay-image {
+    position: fixed;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    height: 35%; /* Занимает 25% высоты экрана */
+    background-image: url('images/ph4.png'); /* Замени на свою фотографию */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 2; /* Вторая фотография поверх основной */
 }
 
-.main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: zoomIn 3s ease-in-out forwards;
-}
-
-@keyframes zoomIn {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.1);
-    }
-}
-
-/* Стили для кнопки (ПК) */
-.button-container {
-    position: absolute;
-    bottom: 40px; /* Отступ снизу */
-    left: 50%; /* Центрирование по горизонтали */
-    transform: translateX(-50%); /* Точное центрирование */
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.continue-button {
-    background-color: #ffb3d9; /* Менее насыщенный розовый */
-    border: none;
-    border-radius: 50px;
-    width: 500px; /* Ширина 500px */
-    height: 70px; /* Высота 70px */
-    font-size: 24px; /* Увеличим размер текста */
-    color: white;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+/* Bottom Navigation Bar (Dynamic Island) */
+.bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* На мобильных устройствах занимает 90% ширины */
+    max-width: 450px; /* На ПК фиксированная ширина 450px */
+    height: 60px; /* Высота (можешь изменить на свое усмотрение) */
+    background-color: rgba(255, 255, 255, 0.4); /* Белый фон */
+    border: 1px solid black; /* Черная обводка */
+    border-radius: 30px; /* Скругленные углы */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: black; /* Черный текст */
+    font-size: 18px;
+    cursor: pointer;
+    overflow: hidden; /* Для эффекта заполнения */
+    z-index: 1000; /* Чтобы панель была поверх всего */
 }
 
-.continue-button:hover {
-    background-color: #ff99cc; /* Мягкий розовый при наведении */
-    transform: scale(1.05); /* Легкое увеличение при наведении */
-}
-/* Стили для свайпа (мобильная версия) */
+/* Контейнер для текста и стрелочек */
 .swipe-container {
-    display: none; /* По умолчанию скрыта на ПК */
-    position: relative;
-    margin-bottom: 40px; /* Отступ снизу */
-    width: 100%;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Расстояние между текстом и стрелочками */
+    z-index: 2; /* Текст и стрелочки поверх черного фона */
 }
 
-.swipe-track {
-    width: 500px; /* Такая же ширина, как у кнопки */
-    height: 70px; /* Такая же высота, как у кнопки */
-    border: 2px solid #ffb3d9; /* Контур как у кнопки */
-    border-radius: 50px;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.1); /* Легкий фон для стиля */
+/* Стрелочки */
+.arrows {
+    font-size: 16px;
+    color: black;
 }
 
+/* Черный фон для заполнения */
 .swipe-fill {
     position: absolute;
     top: 0;
     left: 0;
     width: 0;
     height: 100%;
-    background-color: #ffb3d9; /* Цвет заполнения */
-    transition: width 0.5s ease;
-}
-
-.swipe-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #ffb3d9;
-    font-size: 18px;
-    white-space: nowrap;
+    background-color: black; /* Черный фон */
     z-index: 1;
-    animation: textGlow 2s infinite alternate;
+    transition: width 0.2s ease;
 }
 
-@keyframes textGlow {
-    0% {
-        opacity: 0.8;
-        text-shadow: 0 0 5px rgba(255, 179, 217, 0.5);
-    }
-    100% {
-        opacity: 1;
-        text-shadow: 0 0 20px rgba(255, 179, 217, 1);
-    }
+/* Анимация для ПК (легкое "дыхание") */
+@keyframes breathe {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.01); }
+    100% { transform: translateX(-50%) scale(1); }
 }
 
-/* Адаптация для мобильных устройств */
-@media (max-width: 768px) {
-    .button-container {
-        display: none; /* Скрываем кнопку на мобильных */
-    }
-
-    .swipe-container {
-        display: block; /* Показываем свайп на мобильных */
+/* Адаптация для ПК */
+@media (min-width: 768px) {
+    .bottom-nav {
+        width: 450px; /* Фиксированная ширина на ПК */
+        animation: breathe 3s infinite; /* Анимация "дыхания" */
     }
 }
