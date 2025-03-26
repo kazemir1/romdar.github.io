@@ -13,34 +13,44 @@ const dynamicText = document.getElementById('dynamicText');
 
 // Обработка свайпа (для мобильных устройств)
 let startX = 0;
+let isSwiping = false;
 
 bottomNav.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX; // Фиксируем начальную позицию касания
-});
+    startX = e.touches[0].clientX;
+    isSwiping = true;
+    e.preventDefault(); // Предотвращаем скролл страницы
+}, { passive: false });
 
 bottomNav.addEventListener('touchmove', (e) => {
-    const currentX = e.touches[0].clientX; // Текущая позиция пальца
-    const deltaX = currentX - startX; // Разница между начальной и текущей позицией
+    if (!isSwiping) return;
+
+    const currentX = e.touches[0].clientX;
+    const deltaX = currentX - startX;
 
     if (deltaX > 0) {
-        const fillWidth = (deltaX / bottomNav.offsetWidth) * 100; // Процент заполнения
-        swipeFill.style.width = `${fillWidth}%`; // Заполняем панель черным фоном
+        const fillWidth = Math.min((deltaX / bottomNav.offsetWidth) * 100, 100);
+        swipeFill.style.width = `${fillWidth}%`;
 
         // Плавное исчезновение текста и стрелочек
-        dynamicText.style.opacity = 1 - fillWidth / 100;
-        document.querySelector('.arrows').style.opacity = 1 - fillWidth / 100;
+        const opacity = 1 - (fillWidth / 100);
+        dynamicText.style.opacity = opacity;
+        document.querySelector('.arrows').style.opacity = opacity;
     }
-});
+}, { passive: false });
 
 bottomNav.addEventListener('touchend', (e) => {
-    const endX = e.changedTouches[0].clientX; // Фиксируем конечную позицию касания
-    const deltaX = endX - startX; // Разница между начальной и конечной позицией
+    if (!isSwiping) return;
+    isSwiping = false;
 
-    // Если свайп вправо больше 50% ширины панели
-    if (deltaX > bottomNav.offsetWidth / 2) {
-        window.location.href = 'next-page.html'; // Переход на следующую страницу
+    const endX = e.changedTouches[0].clientX;
+    const deltaX = endX - startX;
+
+    if (deltaX > bottomNav.offsetWidth * 0.3) { // 30% ширины для срабатывания
+        swipeFill.style.width = '100%';
+        setTimeout(() => {
+            window.location.href = 'index2.html'; // Переход на index2.html
+        }, 300);
     } else {
-        // Сбрасываем заполнение и возвращаем текст
         swipeFill.style.width = '0%';
         dynamicText.style.opacity = 1;
         document.querySelector('.arrows').style.opacity = 1;
@@ -49,5 +59,8 @@ bottomNav.addEventListener('touchend', (e) => {
 
 // Обработка клика (для ПК)
 bottomNav.addEventListener('click', () => {
-    window.location.href = 'next-page.html'; // Переход на следующую страницу
+    swipeFill.style.width = '100%';
+    setTimeout(() => {
+        window.location.href = 'index2.html';
+    }, 300);
 });
