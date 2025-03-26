@@ -7,19 +7,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  
+
     <div class="fullscreen-image"></div>
     <div class="overlay-image"></div> <!-- Вторая фотография (25% снизу) -->
 
-
+    <div class="logo">
+      <img src="images/lg2.png" alt="Логотип">
+    </div>
     <!-- Bottom Navigation Bar (Dynamic Island) -->
     <div class="bottom-nav" id="bottomNav">
-        <div class="swipe-container">
-            <span id="dynamicText">Продолжить</span>
-          <!--   <div class="arrows"></div> Стрелочки -->
-        </div>
-        <div class="swipe-fill" id="swipeFill"></div> <!-- Черный фон для заполнения -->
+    <div class="swipe-container">
+        <span id="dynamicText" class="desktop-text">Продолжить</span>
+        <span id="mobileText" class="mobile-text">Потяни, чтобы продолжить <img src="images/arrows.png" class="swipe-arrow" alt="→">
+        </span>
     </div>
+    <div class="swipe-fill" id="swipeFill"></div>
+</div>
 
 
     <!-- Подключаем JavaScript -->

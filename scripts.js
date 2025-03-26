@@ -10,15 +10,16 @@ window.addEventListener('scroll', () => {
 const bottomNav = document.getElementById('bottomNav');
 const swipeFill = document.getElementById('swipeFill');
 const dynamicText = document.getElementById('dynamicText');
+const mobileText = document.getElementById('mobileText');
 
-// Обработка свайпа (для мобильных устройств)
+// Обработка свайпа
 let startX = 0;
 let isSwiping = false;
 
 bottomNav.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
     isSwiping = true;
-    e.preventDefault(); // Предотвращаем скролл страницы
+    e.preventDefault();
 }, { passive: false });
 
 bottomNav.addEventListener('touchmove', (e) => {
@@ -31,10 +32,13 @@ bottomNav.addEventListener('touchmove', (e) => {
         const fillWidth = Math.min((deltaX / bottomNav.offsetWidth) * 100, 100);
         swipeFill.style.width = `${fillWidth}%`;
 
-        // Плавное исчезновение текста и стрелочек
+        // Плавное исчезновение текста
         const opacity = 1 - (fillWidth / 100);
-        dynamicText.style.opacity = opacity;
-        document.querySelector('.arrows').style.opacity = opacity;
+        if (window.innerWidth <= 767) {
+            mobileText.style.opacity = opacity;
+        } else {
+            dynamicText.style.opacity = opacity;
+        }
     }
 }, { passive: false });
 
@@ -45,22 +49,28 @@ bottomNav.addEventListener('touchend', (e) => {
     const endX = e.changedTouches[0].clientX;
     const deltaX = endX - startX;
 
-    if (deltaX > bottomNav.offsetWidth * 0.3) { // 30% ширины для срабатывания
+    if (deltaX > bottomNav.offsetWidth * 0.3) {
         swipeFill.style.width = '100%';
         setTimeout(() => {
-            window.location.href = 'index2.html'; // Переход на index2.html
+            window.location.href = 'index2.html';
         }, 300);
     } else {
         swipeFill.style.width = '0%';
-        dynamicText.style.opacity = 1;
-        document.querySelector('.arrows').style.opacity = 1;
+        if (window.innerWidth <= 767) {
+            mobileText.style.opacity = 1;
+        } else {
+            dynamicText.style.opacity = 1;
+        }
     }
 });
 
-// Обработка клика (для ПК)
+// Обработка клика для ПК
 bottomNav.addEventListener('click', () => {
-    swipeFill.style.width = '100%';
-    setTimeout(() => {
-        window.location.href = 'index2.html';
-    }, 300);
+    if (window.innerWidth > 767) {
+        swipeFill.style.width = '100%';
+        dynamicText.style.opacity = '0';
+        setTimeout(() => {
+            window.location.href = 'index2.html';
+        }, 300);
+    }
 });

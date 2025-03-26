@@ -10,14 +10,25 @@ body, html {
 .fullscreen-image {
     width: 100%;
     height: 100%;
-    background-image: url('images/ph2.jpg'); /* Замени на свою фотографию */
+    background-image: url('images/ph.jpg'); /* Замени на свою фотографию */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1; /* Основная фотография ниже второй */
 }
 
+.logo {
+  position: absolute;
+  top: 15px; /* Прижимаем к верхнему краю */
+  transform: translateX(-50%); /* Точное центрирование по горизонтали */
+  left: 50%;
+}
 
+.logo img {
+  height: 70px;
+  width: auto;
+  display: block;
+}
 /* Остальные стили остаются без изменений */
 /* Вторая фотография (25% снизу) */
 .overlay-image {
@@ -25,8 +36,8 @@ body, html {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 35%; /* Занимает 25% высоты экрана */
-    background-image: url('images/ph4.png'); /* Замени на свою фотографию */
+    height: 95%; /* Занимает 25% высоты экрана */
+    background-image: url('images/1.png'); /* Замени на свою фотографию */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -63,11 +74,6 @@ body, html {
     z-index: 2; /* Текст и стрелочки поверх черного фона */
 }
 
-/* Стрелочки */
-.arrows {
-    font-size: 16px;
-    color: black;
-}
 
 /* Черный фон для заполнения */
 .swipe-fill {
@@ -80,7 +86,61 @@ body, html {
     z-index: 1;
     transition: width 0.2s ease;
 }
+/* Стили для текста */
+.desktop-text {
+    display: block;
+}
+.mobile-text {
+    display: none;
+    animation: swipeHint 2s infinite;
+}
+/* Убираем старые стрелочки */
+.arrows {
+    display: none; /* Скрываем текстовые стрелки */
+}
 
+/* Стили для стрелки-изображения */
+.swipe-arrow {
+    width: 30px;
+    height: 30px;
+    display: none;
+    position: relative;
+    top: 0px; /* Основное смещение вверх */
+    vertical-align: middle;
+    margin-left: 10px;
+    animation: arrowPulse 1s infinite;
+    transition: opacity 0.2s ease;
+}
+
+@media (max-width: 767px) {
+    .swipe-arrow {
+        display: inline-block;
+    }
+}
+
+@keyframes arrowPulse {
+    0% { transform: translateX(0) translateY(-2px); opacity: 0.6; }
+    50% { transform: translateX(5px) translateY(-2px); opacity: 1; }
+    100% { transform: translateX(0) translateY(-2px); opacity: 0.6; }
+}
+
+/* Анимация подсказки свайпа */
+@keyframes swipeHint {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+    100% { transform: translateX(0); }
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 767px) {
+    .desktop-text {
+        display: none;
+    }
+    .mobile-text {
+        display: block;
+    }
+}
+/* Остальные существующие стили остаются без изменений */
 /* Анимация для ПК (легкое "дыхание") */
 @keyframes breathe {
     0% { transform: translateX(-50%) scale(1); }
@@ -94,4 +154,5 @@ body, html {
         width: 450px; /* Фиксированная ширина на ПК */
         animation: breathe 3s infinite; /* Анимация "дыхания" */
     }
+
 }

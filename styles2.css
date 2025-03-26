@@ -140,12 +140,17 @@ button.menu-icon {
     color: #5e2d3b;
 }
 
-/* Стили для логотипа */
+.logo {
+  position: absolute;
+  top: 15px; /* Прижимаем к верхнему краю */
+  transform: translateX(-50%); /* Точное центрирование по горизонтали */
+  left: 50%;
+}
+
 .logo img {
-  height: 70px; /* Высота логотипа */
-  width: auto; /* Ширина подстраивается автоматически */
-
-
+  height: 70px;
+  width: auto;
+  display: block;
 }
 
 /* Стили для корзины */
@@ -646,4 +651,3 @@ button.menu-icon {
     font-size: 13px;
   }
 }
- 
