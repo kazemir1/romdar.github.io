@@ -11,6 +11,74 @@ body, html {
   padding: 0;
   font-family: 'futuralightc-italic', sans-serif;
 }
+/* Основные стили динамического острова */
+.bottom-nav-icons {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 450px;
+  height: 80px;
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-icons-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.nav-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  padding: 8px 12px;
+  position: relative;
+}
+
+.icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-icon.active .icon-wrapper {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+}
+
+.nav-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.icon-label {
+  font-size: 12px;
+  margin-top: 5px;
+  color: white;
+  font-weight: 500;
+}
+
+/* Анимация при наведении */
+.nav-icon:hover .icon-wrapper {
+  transform: scale(1.1);
+}
+
 
 /* Стили для хедера */
 .header {
@@ -649,5 +717,23 @@ button.menu-icon {
   .subscribe-form input,
   .subscribe-form button {
     font-size: 13px;
+  }
+  .bottom-nav-icons {
+    height: 70px;
+    bottom: 10px;
+  }
+
+  .icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-icon-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .icon-label {
+    font-size: 10px;
   }
 }

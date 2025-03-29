@@ -1,5 +1,49 @@
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Определяем текущую страницу
+  const currentPage = window.location.pathname.split('/').pop().split('.')[0] || 'home';
+
+  // Устанавливаем активную иконку
+  document.querySelectorAll('.nav-icon').forEach(icon => {
+    if (icon.getAttribute('data-page') === currentPage) {
+      icon.classList.add('active');
+    }
+
+    // Обработчик клика
+    icon.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Удаляем активный класс у всех иконок
+      document.querySelectorAll('.nav-icon').forEach(i => {
+        i.classList.remove('active');
+      });
+
+      // Добавляем активный класс текущей иконке
+      this.classList.add('active');
+
+      // Плавный переход через 300мс
+      setTimeout(() => {
+        window.location.href = this.href;
+      }, 300);
+    });
+  });
+
+  // Если переход со страницы "Продолжить", активируем первую иконку
+  if (document.referrer.includes('index.html') && !currentPage) {
+    const firstIcon = document.querySelector('.nav-icon[data-page="home"]');
+    if (firstIcon) firstIcon.classList.add('active');
+  }
+});
+
+
+
 // Получаем хедер
 const header = document.getElementById('header');
+
+
+
+
+
 
 // Функция для изменения стилей хедера при прокрутке
 window.addEventListener('scroll', () => {

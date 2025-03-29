@@ -7,6 +7,30 @@
   <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
+  <!-- Dynamic Island с иконками навигации -->
+<div class="bottom-nav-icons" id="bottomNav">
+  <div class="nav-icons-container">
+    <a href="index.html" class="nav-icon active" data-page="home">
+      <div class="icon-wrapper">
+        <img src="images/home-icon.png" alt="Главная" class="nav-icon-img">
+      </div>
+      <span class="icon-label"></span>
+    </a>
+    <a href="configurator.html" class="nav-icon" data-page="config">
+      <div class="icon-wrapper">
+        <img src="images/config-icon.png" alt="Настройки" class="nav-icon-img">
+      </div>
+      <span class="icon-label"></span>
+    </a>
+    <a href="cart.html" class="nav-icon" data-page="cart">
+      <div class="icon-wrapper">
+        <img src="images/bag.png" alt="Корзина" class="nav-icon-img">
+      </div>
+      <span class="icon-label"></span>
+    </a>
+  </div>
+</div>
+
   <header class="header" id="header">
     <!-- Меню слева -->
     <button class="menu-icon">
@@ -47,6 +71,8 @@
       <span class="cart-counter">0</span>
     </div>
   </header>
+
+
 
    <!-- Фотография товара -->
   <section class="product-hero">
