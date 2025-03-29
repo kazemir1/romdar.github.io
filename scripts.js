@@ -1,3 +1,7 @@
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const bottomNav = document.getElementById('bottomNav');
   const swipeFill = document.querySelector('.swipe-fill');

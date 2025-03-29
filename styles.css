@@ -12,10 +12,10 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
-.fullscreen-image {
+.fullscreen-image img{
     width: 100%;
     height: 100%;
-    background-image: url('images/ph.jpg');
+    /*background-image: url('images/ph.jpg');*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
