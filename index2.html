@@ -31,32 +31,8 @@
   </div>
 </div>
 
-  <header class="header" id="header">
-    <!-- Меню слева -->
-    <button class="menu-icon">
-    <!-- <div class="menu-icon">-->
-      <img src="images/menu.png" alt="Меню"> <!-- Заглушка для иконки меню -->
-      <span class="menu-text">Меню</span>
-    <!--</div>-->
-    </button>
+<header class="header" id="header">
 
-    <nav class="sidebar">
-    <div class="menu-header">
-        <h3>Lingerie Boutique</h3>
-        <button class="close-btn">×</button>
-    </div>
-    <ul class="menu-list">
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Новинки сезона</a></li>
-        <li><a href="#">Бюстгальтеры</a></li>
-        <li><a href="#">Трусики</a></li>
-        <li><a href="#">Комплекты</a></li>
-        <li><a href="#">Корсеты</a></li>
-        <li><a href="#">Акции</a></li>
-        <li><a href="#">Подбор по размеру</a></li>
-        <li><a href="#">Контакты</a></li>
-    </ul>
-</nav>
 
 <div class="overlay"></div>
 
@@ -65,11 +41,7 @@
       <img src="images/lg2.png" alt="Логотип">
     </div>
 
-    <!-- Корзина справа -->
-    <div class="cart">
-      <img src="images/bag.png" alt="Корзина">
-      <span class="cart-counter">0</span>
-    </div>
+
   </header>
 
 
@@ -79,7 +51,7 @@
     <img src="images/ph2.jpg" alt="Фото товара" class="product-image">
     <div class="product-info">
       <p class="product-description">Элегантный дизайн, мощь и роскошь</p>
-      <a href="/product-page" class="product-name">Bentley Continental GT</a>
+      <a href="/product-page" class="product-name">Дарья Зацкевич 1998года</a>
     </div>
   </section>
 
@@ -101,7 +73,7 @@
     </div>
   </div>
   <div class="photo-text">
-    <h2 class="photo-title">Bentley Continental GT</h2>
+    <h2 class="photo-title">Дарья Зацкевич 1998года</h2>
     <p class="photo-description">Элегантный дизайн, мощь и роскошь. Идеальный выбор для тех, кто ценит стиль и комфорт.</p>
     <a href="/product-page" class="photo-link">Подробнее</a>
   </div>
@@ -110,6 +82,21 @@
   <section class="full-photo">
     <img src="images/ph2.jpg" alt="Полноразмерная фотография">
   </section>
+
+  <section class="news-feed">
+  <div class="news-header">
+    <h2>Актуальные новости моды</h2>
+    <p>Свежие тренды и события индустрии</p>
+  </div>
+
+  <div class="news-container" id="newsContainer">
+    <!-- Новости будут подгружаться здесь через JS -->
+  </div>
+
+  <div class="news-footer">
+    <p>Источник: <a href="https://dzen.ru/" target="_blank" rel="nofollow noopener noreferrer">FashionNews</a></p>
+  </div>
+</section>
 
 
 <footer class="footer">
@@ -164,5 +151,8 @@
   </div>
 </footer>
   <script src="scripts2.js"></script>
+  <div class="preloader">
+  <div class="preloader__spinner"></div>
+</div>
 </body>
 </html>

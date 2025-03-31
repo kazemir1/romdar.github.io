@@ -1,3 +1,31 @@
+// Прелоадер
+window.addEventListener('load', function() {
+  const preloader = document.querySelector('.preloader');
+
+  // Задержка для демонстрации (можно убрать)
+  setTimeout(() => {
+    preloader.classList.add('preloader--hidden');
+
+    // Удаляем прелоадер из DOM после анимации
+    preloader.addEventListener('transitionend', function() {
+      this.remove();
+    });
+  }, 1000); // 1 секунда задержки
+});
+
+// Предзагрузка изображений (опционально)
+function preloadImages() {
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    const src = img.getAttribute('src');
+    if (src) {
+      new Image().src = src;
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', preloadImages);
+
 
 document.addEventListener('DOMContentLoaded', function() {
   // Определяем текущую страницу
@@ -83,3 +111,34 @@ function closeMenu() {
     document.querySelector('.sidebar').classList.remove('active');
     document.querySelector('.overlay').style.display = 'none';
 }
+
+//ббб1112233444
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const apiKey = 'f3ff48f312344e42b26772ce265e24d6'; // Получите на newsapi.org
+  const newsContainer = document.getElementById('newsContainer');
+
+  try {
+    const response = await fetch(
+      `https://newsapi.org/v2/everything?q=fashion&language=ru&pageSize=10&apiKey=${apiKey}`
+    );
+    const data = await response.json();
+
+    if (data.articles) {
+      data.articles.forEach(article => {
+        newsContainer.innerHTML += `
+          <div class="news-card">
+            <a href="${article.url}" target="_blank" rel="nofollow">
+              <h3>${article.title}</h3>
+              <p>${article.description || ''}</p>
+              <small>Источник: ${article.source.name}</small>
+            </a>
+          </div>
+        `;
+      });
+    }
+  } catch (error) {
+    console.error('Ошибка:', error);
+    newsContainer.innerHTML = '<p>Не удалось загрузить новости. Попробуйте позже.</p>';
+  }
+});
