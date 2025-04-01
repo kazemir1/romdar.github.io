@@ -99,46 +99,52 @@ window.addEventListener('scroll', () => {
 });
 
 // JavaScript меню
-document.querySelector('.menu-icon').addEventListener('click', () => {
-    document.querySelector('.sidebar').classList.add('active');
-    document.querySelector('.overlay').style.display = 'block';
-});
+//document.querySelector('.menu-icon').addEventListener('click', () => {
+//    document.querySelector('.sidebar').classList.add('active');
+//    document.querySelector('.overlay').style.display = 'block';
+//});
 
-document.querySelector('.overlay').addEventListener('click', closeMenu);
-document.querySelector('.close-btn').addEventListener('click', closeMenu);
+//document.querySelector('.overlay').addEventListener('click', closeMenu);
+//document.querySelector('.close-btn').addEventListener('click', closeMenu);
 
-function closeMenu() {
-    document.querySelector('.sidebar').classList.remove('active');
-    document.querySelector('.overlay').style.display = 'none';
-}
+//function closeMenu() {
+  //  document.querySelector('.sidebar').classList.remove('active');
+  //  document.querySelector('.overlay').style.display = 'none';
+//}
 
 //ббб1112233444
+// Открытие модалки
+// Ждем полной загрузки DOM
+document.addEventListener('DOMContentLoaded', function() {
+  // Открытие модалки
+  document.querySelectorAll('.full-product-button').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('productModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const apiKey = 'f3ff48f312344e42b26772ce265e24d6'; // Получите на newsapi.org
-  const newsContainer = document.getElementById('newsContainer');
+  // Закрытие модалки - ТРИ надежных способа:
 
-  try {
-    const response = await fetch(
-      `https://newsapi.org/v2/everything?q=fashion&language=ru&pageSize=10&apiKey=${apiKey}`
-    );
-    const data = await response.json();
+  // 1. По ID кнопки (самый надежный)
+  document.getElementById('closeModal').addEventListener('click', function() {
+    closeModal();
+  });
 
-    if (data.articles) {
-      data.articles.forEach(article => {
-        newsContainer.innerHTML += `
-          <div class="news-card">
-            <a href="${article.url}" target="_blank" rel="nofollow">
-              <h3>${article.title}</h3>
-              <p>${article.description || ''}</p>
-              <small>Источник: ${article.source.name}</small>
-            </a>
-          </div>
-        `;
-      });
+  // 2. По классу (дублирующая проверка)
+  document.querySelector('.close-modal').addEventListener('click', closeModal);
+
+  // 3. Закрытие по клику вне окна
+  document.getElementById('productModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
     }
-  } catch (error) {
-    console.error('Ошибка:', error);
-    newsContainer.innerHTML = '<p>Не удалось загрузить новости. Попробуйте позже.</p>';
+  });
+
+  // Функция для закрытия
+  function closeModal() {
+    document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });

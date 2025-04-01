@@ -62,6 +62,70 @@
     </p>
   </section>
 
+  <section class="full-width-products">
+    <!-- Карточка 1 -->
+    <div class="full-product-card">
+      <div class="full-product-image">
+        <img src="images/ph2.jpg" alt="Дарья Зацкевич 1998 года">
+      </div>
+      <div class="full-product-content">
+        <h3>Дарья Зацкевич 1998 года</h3>
+        <p>Элегантный дизайн, мощь и роскошь. Идеальный выбор для ценителей стиля.</p>
+        <a href="#" class="full-product-button">Подробнее</a>
+      </div>
+    </div>
+
+    <!-- Карточка 2 (аналогично) -->
+    <div class="full-product-card">
+      <div class="full-product-image">
+        <img src="images/ph.jpg" alt="Дарья Зацкевич 1998 года">
+      </div>
+      <div class="full-product-content">
+        <h3>Дарья Зацкевич 1998 года</h3>
+        <p>Элегантный дизайн, мощь и роскошь. Идеальный выбор для ценителей стиля.</p>
+        <a href="#" class="full-product-button">Подробнее</a>
+      </div>
+    </div>
+
+    <!-- Карточка 3 (аналогично) -->
+    <div class="full-product-card">
+      <div class="full-product-image">
+        <img src="images/ph2.jpg" alt="Дарья Зацкевич 1998 года">
+      </div>
+      <div class="full-product-content">
+        <h3>Дарья Зацкевич 1998 года</h3>
+        <p>Элегантный дизайн, мощь и роскошь. Идеальный выбор для ценителей стиля.</p>
+        <a href="#" class="full-product-button">Подробнее</a>
+      </div>
+    </div>
+
+    <!-- Карточка 4 (аналогично) -->
+    <div class="full-product-card">
+      <div class="full-product-image">
+        <img src="images/ph.jpg" alt="Дарья Зацкевич 1998 года">
+      </div>
+      <div class="full-product-content">
+        <h3>Дарья Зацкевич 1998 года</h3>
+        <p>Элегантный дизайн, мощь и роскошь. Идеальный выбор для ценителей стиля.</p>
+        <a href="#" class="full-product-button">Подробнее</a>
+      </div>
+    </div>
+
+    <!-- Карточка 5 (аналогично) -->
+    <div class="full-product-card">
+      <div class="full-product-image">
+        <img src="images/ph2.jpg" alt="Дарья Зацкевич 1998 года">
+      </div>
+      <div class="full-product-content">
+        <h3>Дарья Зацкевич 1998 года</h3>
+        <p>Элегантный дизайн, мощь и роскошь. Идеальный выбор для ценителей стиля.</p>
+        <a href="#" class="full-product-button">Подробнее</a>
+      </div>
+    </div>
+
+    <!-- Остальные 3 карточки -->
+  </section>
+
     <!-- Блок с двумя фотографиями и текстом -->
 <section class="two-photos">
   <div class="photo-container">
@@ -83,21 +147,7 @@
     <img src="images/ph2.jpg" alt="Полноразмерная фотография">
   </section>
 
-  <section class="news-feed">
-  <div class="news-header">
-    <h2>Актуальные новости моды</h2>
-    <p>Свежие тренды и события индустрии</p>
-  </div>
-
-  <div class="news-container" id="newsContainer">
-    <!-- Новости будут подгружаться здесь через JS -->
-  </div>
-
-  <div class="news-footer">
-    <p>Источник: <a href="https://dzen.ru/" target="_blank" rel="nofollow noopener noreferrer">FashionNews</a></p>
-  </div>
-</section>
-
+ы
 
 <footer class="footer">
   <div class="footer-container">
@@ -154,5 +204,91 @@
   <div class="preloader">
   <div class="preloader__spinner"></div>
 </div>
+  <!-- Карточка товара-->
+  <div class="product-modal" id="productModal">
+  <div class="modal-content">
+    <button class="close-modal" id="closeModal">&times;</button>
+
+    <!-- Для ПК версии -->
+    <div class="product-container pc-version">
+      <div class="product-gallery">
+        <img src="images/ph2.jpg" alt="Дарья Зацкевич 1998 года" class="main-image">
+      </div>
+      <div class="product-details">
+        <h2>Дарья Зацкевич 1998 года</h2>
+        <p class="description">Элегантный дизайн, мощь и роскошь. Идеальный выбор для ценителей стиля.</p>
+        <p class="price">5 990 ₽</p>
+
+        <div class="options">
+          <div class="size-selector">
+            <h3>Размер</h3>
+            <div class="sizes">
+              <button>XS</button>
+              <button class="active">S</button>
+              <button>M</button>
+              <button>L</button>
+            </div>
+          </div>
+
+          <div class="color-selector">
+            <h3>Цвет</h3>
+            <div class="colors">
+              <button style="background: #ff6b8d;"></button>
+              <button class="active" style="background: #5e2d3b;"></button>
+              <button style="background: #000;"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="add-to-cart">Добавить в корзину</button>
+          <button class="buy-now">Купить сейчас</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Для мобильной версии (скрыто на ПК) -->
+    <div class="product-container mobile-version">
+      <div class="product-gallery">
+        <img src="images/ph2.jpg" alt="Дарья Зацкевич 1998 года" class="main-image">
+      </div>
+      <div class="product-details">
+        <h2>Дарья Зацкевич 1998 года</h2>
+        <p class="description">Элегантный дизайн, мощь и роскошь. Идеальный выбор для ценителей стиля.</p>
+        <p class="price">5 990 ₽</p>
+
+        <!-- Тут те же options и action-buttons -->
+        <div class="options">
+          <div class="size-selector">
+            <h3>Размер</h3>
+            <div class="sizes">
+              <button>XS</button>
+              <button class="active">S</button>
+              <button>M</button>
+              <button>L</button>
+            </div>
+          </div>
+
+          <div class="color-selector">
+            <h3>Цвет</h3>
+            <div class="colors">
+              <button style="background: #ff6b8d;"></button>
+              <button class="active" style="background: #5e2d3b;"></button>
+              <button style="background: #000;"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="add-to-cart">Добавить в корзину</button>
+          <button class="buy-now">Купить сейчас</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
 </body>
 </html>
