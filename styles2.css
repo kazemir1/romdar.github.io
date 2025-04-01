@@ -699,6 +699,8 @@ button.menu-icon {
   max-width: 900px;
   max-height: 90vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-close {
@@ -715,28 +717,27 @@ button.menu-icon {
 
 .modal-content {
   display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 
 .modal-left {
-  flex: 1;
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .modal-product-image {
   max-width: 100%;
-  max-height: 70vh;
+  max-height: 40vh;
   object-fit: contain;
   border-radius: 10px;
 }
 
 .modal-right {
-  flex: 1;
-  padding: 40px;
-  overflow-y: auto;
-  max-height: 80vh;
+  padding: 30px;
 }
 
 .modal-product-title {
@@ -800,6 +801,11 @@ button.menu-icon {
 .modal-buttons {
   display: flex;
   gap: 15px;
+  padding: 15px;
+  background: white;
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid #f0f0f0;
 }
 
 .modal-button {
@@ -835,47 +841,66 @@ button.menu-icon {
 /* Мобильная версия модального окна */
 @media (max-width: 768px) {
   .modal-container {
-    width: 95%;
-    max-height: 95vh;
-  }
+   width: 100%;
+   height: 100vh;
+   max-height: none;
+   border-radius: 0;
+   position: fixed;
+   bottom: 0;
+ }
 
-  .modal-content {
-    flex-direction: column;
-  }
+ .modal-content {
+   display: flex;
+   flex-direction: column;
+   height: calc(100% - 120px); /* Оставляем место для кнопок */
+   overflow-y: auto;
+ }
 
-  .modal-left {
-    padding: 0;
-  }
+ .modal-left {
+   padding: 10px;
+   flex: 0 0 auto;
+ }
 
-  .modal-product-image {
-    width: 100%;
-    max-height: 40vh;
-    border-radius: 0;
-  }
+ .modal-product-image {
+   max-height: 30vh;
+ }
 
-  .modal-right {
-    padding: 20px;
-    max-height: 50vh;
-    overflow-y: auto;
-  }
+ .modal-right {
+   padding: 20px;
+   padding-bottom: 30px; /* Добавляем отступ снизу равный высоте кнопок */
+   flex: 1;
+ }
 
-  .modal-product-title {
-    font-size: 22px;
-  }
+ .modal-product-title {
+   font-size: 22px;
+ }
 
-  .modal-product-price {
-    font-size: 20px;
-  }
+ .modal-product-price {
+   font-size: 20px;
+ }
 
-  .modal-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
+ .modal-buttons {
+   position: fixed;
+   bottom: 70px; /* Выше динамического острова */
+   left: 0;
+   right: 0;
+   padding: 15px;
+   background: white;
+   z-index: 1001;
+   display: flex;
+   gap: 10px;
+   box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+ }
 
-  .modal-button {
-    width: 100%;
-  }
+ .modal-button {
+   margin: 0;
+   flex: 1;
+   padding: 12px;
+   font-size: 16px;
+   border-radius: 25px;
+ }
 }
+
 /*Модельное окно*/
 /**/
 .modal-price-container {
