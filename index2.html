@@ -22,7 +22,7 @@
       </div>
       <span class="icon-label"></span>
     </a>
-    <a href="https://goldapple.ru" class="nav-icon" data-page="cart">
+    <a href="#" class="nav-icon" data-page="cart">
       <div class="icon-wrapper">
         <img src="images/bag.png" alt="Корзина" class="nav-icon-img">
       </div>
@@ -300,6 +300,28 @@
       </div>
     </div>
   </div>
+  </div>
+</div>
+<!-- Модальное окно корзины -->
+<div class="modal-overlay" id="cartModal">
+  <div class="modal-container cart-modal">
+    <button class="modal-close">&times;</button>
+
+    <div class="modal-content">
+      <h2 class="modal-title" style="padding: 20px 20px 0;">Ваша корзина</h2>
+
+      <div class="cart-items">
+        <!-- Товары будут добавляться сюда динамически -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Итого:</span>
+          <span class="total-price">0.00₽</span>
+        </div>
+        <button class="modal-button buy-now cart-buy-button">Купить сейчас</button>
+      </div>
+    </div>
   </div>
 </div>
 </body>
