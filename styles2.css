@@ -1356,3 +1356,395 @@ button.menu-icon {
     font-size: 10px;
   }
 }
+/**/
+
+/* Стили для страницы оформления заказа */
+/* Обновленные стили для страницы оформления заказа */
+/* Стили для страницы оформления заказа */
+.checkout-container {
+  max-width: 1200px;
+  margin: 100px auto 50px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.checkout-title {
+  font-size: 32px;
+  color: #5e2d3b;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.section-title {
+  font-size: 24px;
+  color: #5e2d3b;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ff6b8d;
+}
+
+/* Обновленный блок товаров */
+.checkout-products {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  height: fit-content;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 500px; /* Фиксированная высота для скролла */
+  padding-right: 10px;
+}
+
+/* Стилизация скроллбара */
+.products-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.products-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.products-list::-webkit-scrollbar-thumb {
+  background: #ff6b8d;
+  border-radius: 3px;
+}
+
+.products-list::-webkit-scrollbar-thumb:hover {
+  background: #ff3b6d;
+}
+
+.checkout-product {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  background: #fafafa;
+  margin-right: 5px; /* Оставляем место для скроллбара */
+}
+
+.checkout-product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+  border: 1px solid #eee;
+}
+
+.checkout-product-info {
+  flex: 1;
+  min-width: 0; /* Предотвращаем выход текста за границы */
+}
+
+.checkout-product-title {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.checkout-product-price {
+  font-size: 16px;
+  color: #ff6b8d;
+  font-weight: bold;
+}
+
+.checkout-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 15px 0 5px;
+  border-top: 1px solid #f0f0f0;
+  margin-top: auto; /* Прижимаем итоговую сумму к низу */
+  background: white;
+  position: sticky;
+  bottom: 0;
+}
+
+.checkout-total .total-amount {
+  color: #ff6b8d;
+}
+
+/* Стили формы (оставляем без изменений) */
+.checkout-form {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  border: 1px solid #f0f0f0;
+  height: fit-content;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #5e2d3b;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #ff6b8d;
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 50px;
+}
+
+.form-agreement {
+  margin: 25px 0;
+  display: flex;
+  align-items: center;
+}
+
+.form-agreement input {
+  margin-right: 10px;
+}
+
+.form-agreement label {
+  font-size: 14px;
+  color: #666;
+}
+
+.form-agreement a {
+  color: #ff6b8d;
+  text-decoration: none;
+}
+
+.form-agreement a:hover {
+  text-decoration: underline;
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #ff6b8d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+  background-color: #ff3b6d;
+}
+
+/* Адаптация для десктопов */
+@media (min-width: 768px) {
+  .checkout-container {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: start;
+    gap: 30px; /* Уменьшаем общий вертикальный отступ */
+    margin-top: 30px; /* Уменьшаем отступ сверху всего контейнера */
+    margin-bottom: 30px;
+  }
+
+  .checkout-title {
+    grid-column: 1 / -1; /* Заголовок теперь занимает всю ширину */
+    margin-bottom: 50px; /* Уменьшаем отступ под заголовком */
+
+  }
+
+  .checkout-products {
+    order: 1;
+    position: sticky;
+    top: 100px; /* Фиксируем ближе к верху */
+    max-height: calc(100vh - 130px); /* Корректируем высоту */
+    margin-top: 0; /* Убираем лишние отступы */
+  }
+
+  .checkout-form {
+    order: 2;
+    margin-top: 0; /* Убираем отступ сверху формы */
+    padding-top: 15px; /* Уменьшаем внутренний отступ */
+  }
+
+  /* Улучшенные отступы для широких экранов */
+  @media (min-width: 1200px) {
+    .checkout-form {
+      max-width: 500px;
+      margin-left: auto;
+    }
+
+    .checkout-products {
+      max-width: 600px;
+    }
+  }
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 767px) {
+  .checkout-container {
+    margin-top: 80px;
+    gap: 30px;
+  }
+
+  .checkout-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .checkout-products,
+  .checkout-form {
+    padding: 20px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+
+  .checkout-button {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  /* Уменьшаем поля для маленьких экранов */
+  @media (max-width: 480px) {
+    .checkout-container {
+      padding: 0 15px;
+    }
+
+    .checkout-products,
+    .checkout-form {
+      padding: 15px;
+    }
+
+    .checkout-product-image {
+      width: 60px;
+      height: 60px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+  }
+}
+/*dinam*/
+/* Новый динамический остров (замена при скролле) */
+.dynamic-checkout-island {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 450px;
+  height: 80px;
+  border-radius: 45px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1001; /* Выше оригинального острова */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.dynamic-checkout-island.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.home-part {
+  width: 25%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.home-part img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+.checkout-part {
+  width: 75%;
+  background: #ff6b8d;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  transition: all 0.4s ease;
+}
+
+/* Анимации при взаимодействии */
+.home-part:hover img {
+  transform: scale(1.15);
+}
+
+.checkout-part:active {
+  background: #ff3b6d;
+}
+
+/* Адаптация оригинального острова */
+.bottom-nav-icons {
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.bottom-nav-icons.hidden {
+  transform: translateY(120%) scale(0.9);
+  opacity: 0;
+}
+
+/* Скрываем кнопку в форме на мобильных */
+@media (max-width: 767px) {
+  .checkout-button {
+    display: none;
+  }
+
+  .checkout-form {
+    padding-bottom: 100px;
+  }
+}
