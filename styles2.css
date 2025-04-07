@@ -1748,3 +1748,25 @@ button.menu-icon {
     padding-bottom: 100px;
   }
 }
+
+#phone::placeholder {
+  color: #999;
+  opacity: 1; /* Для Firefox */
+}
+
+/* Стили для валидации */
+.form-group input:invalid {
+  border-color: #ff6b8d;
+  box-shadow: 0 0 0 2px rgba(255,107,141,0.2);
+}
+
+.form-group input:invalid + .validation-message {
+  display: block;
+}
+
+.validation-message {
+  display: none;
+  color: #ff6b8d;
+  font-size: 12px;
+  margin-top: 5px;
+}

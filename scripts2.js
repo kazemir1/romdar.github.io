@@ -432,3 +432,124 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('orderForm').submit();
   });
 });
+
+// Добавляем в scripts2.js
+document.addEventListener('DOMContentLoaded', function() {
+  // Получаем все поля ввода
+  const inputs = document.querySelectorAll('#orderForm input, #orderForm textarea');
+
+  // Настройка для мобильных устройств
+  if ('virtualKeyboard' in navigator) {
+    inputs.forEach(input => {
+      // Устанавливаем атрибуты для мобильной клавиатуры
+      input.setAttribute('enterkeyhint', 'done');
+      input.setAttribute('inputmode', 'none');
+
+      // Обработчик завершения ввода
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          e.preventDefault();
+          this.blur(); // Скрываем клавиатуру
+        }
+      });
+    });
+  }
+
+  // Скрытие клавиатуры при клике вне поля ввода
+  document.addEventListener('click', function(e) {
+    if (!e.target.matches('input, textarea')) {
+      if (document.activeElement && document.activeElement.matches('input, textarea')) {
+        document.activeElement.blur();
+      }
+    }
+  });
+});
+
+// Маска для телефона
+document.getElementById('phone').addEventListener('input', function(e) {
+  let value = this.value.replace(/\D/g, ''); // Удаляем все нецифры
+  let formattedValue = '';
+
+  // Ограничиваем длину до 11 цифр (10 без +7)
+  if (value.length > 11) {
+    value = value.substring(0, 11);
+  }
+
+  // Форматируем значение
+  if (value.length > 0) {
+    formattedValue = '+7 (' + value.substring(1, 4);
+  }
+  if (value.length >= 4) {
+    formattedValue += ') ' + value.substring(4, 7);
+  }
+  if (value.length >= 7) {
+    formattedValue += ' ' + value.substring(7, 9);
+  }
+  if (value.length >= 9) {
+    formattedValue += ' ' + value.substring(9, 11);
+  }
+
+  // Устанавливаем отформатированное значение
+  this.value = formattedValue;
+
+  // Удаляем лишние символы, если пользователь удаляет цифры
+  if (e.inputType === 'deleteContentBackward') {
+    const cursorPos = this.selectionStart;
+    if (cursorPos === 4 || cursorPos === 8 || cursorPos === 12 || cursorPos === 15) {
+      this.setSelectionRange(cursorPos - 1, cursorPos - 1);
+    }
+  }
+});
+
+// Запрещаем ввод символов, кроме цифр и управляющих клавиш
+document.getElementById('phone').addEventListener('keydown', function(e) {
+  // Разрешаем: backspace, delete, tab, escape, enter, стрелки
+  if ([46, 8, 9, 27, 13, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+     // Разрешаем: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+     (e.keyCode === 65 && e.ctrlKey === true) ||
+     (e.keyCode === 67 && e.ctrlKey === true) ||
+     (e.keyCode === 86 && e.ctrlKey === true) ||
+     (e.keyCode === 88 && e.ctrlKey === true)) {
+    return;
+  }
+
+  // Запрещаем все, кроме цифр
+  if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+    e.preventDefault();
+  }
+});
+
+// Валидация email
+const emailInput = document.getElementById('email');
+const emailValidationMsg = document.createElement('div');
+emailValidationMsg.className = 'validation-message';
+emailValidationMsg.textContent = 'Введите email в формате example@domain.ru';
+emailInput.parentNode.appendChild(emailValidationMsg);
+
+emailInput.addEventListener('input', function() {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const isValid = emailRegex.test(this.value);
+
+  this.setCustomValidity(isValid ? '' : 'Введите корректный email');
+});
+
+// Обновленная проверка формы
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+  const phoneValue = document.getElementById('phone').value.replace(/\D/g, '');
+  const emailValue = document.getElementById('email').value;
+
+  // Дополнительная проверка телефона
+  if (phoneValue.length !== 11 || !phoneValue.startsWith('7')) {
+    e.preventDefault();
+    alert('Номер телефона должен содержать 11 цифр и начинаться с 7');
+    return;
+  }
+
+  // Дополнительная проверка email
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailRegex.test(emailValue)) {
+    e.preventDefault();
+    alert('Введите корректный email адрес');
+    return;
+  }
+});
