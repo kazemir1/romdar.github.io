@@ -1047,7 +1047,7 @@ button.menu-icon {
 
  .modal-buttons {
    position: fixed;
-   bottom: 70px; /* Выше динамического острова */
+   bottom: 20px; /* Выше динамического острова */
    left: 0;
    right: 0;
    padding: 15px;
