@@ -2,209 +2,120 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Академия HR процессов - адаптация и обучение персонала</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AdaptPro - Система адаптации персонала</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="stylesmodal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Блок 1 - Приветственный экран -->
-    <section id="block1" class="block">
-        <div class="content">
-            <h1>Академия HR процессов</h1>
-            <h2>Адаптация и обучение персонала, интегрированные в ваши бизнес-процессы</h2>
-            <p>Индивидуальные решения для эффективного развития вашей команды</p>
-            <div>
-                <a href="#block2" class="btn btn-outline">Узнать больше</a>
-                <a href="#contact" class="btn">Оставить заявку</a>
+    <header class="transparent-header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="1.3.png" alt="AdaptPro Logo" class="logo-main">
+                <img src="1.1.png" alt="AdaptPro Logo Hover" class="logo-hover">
             </div>
+            <nav class="desktop-nav">
+                <div class="nav-spacer" style="width: 180px;"></div>
+                <a href="#"><span data-text="Кнопка1">Кнопка1</span></a>
+                <div class="nav-spacer" style="width: 180px;"></div>
+                <a href="#"><span data-text="Кнопка2">Кнопка2</span></a>
+                <div class="nav-spacer" style="width: 180px;"></div>
+                <a href="#"><span data-text="Кнопка3">Кнопка3</span></a>
+                <div class="nav-spacer" style="width: 180px;"></div>
+                <a href="#"><span data-text="Кнопка4">Кнопка4</span></a>
+            </nav>
+            <button class="mobile-menu-button" aria-label="Меню">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <a href="#block2" class="scroll-down">↓</a>
-    </section>
+        <nav class="mobile-nav">
+            <a href="#"><span data-text="Кнопка1">Кнопка1</span></a>
+            <a href="#"><span data-text="Кнопка2">Кнопка2</span></a>
+            <a href="#"><span data-text="Кнопка3">Кнопка3</span></a>
+            <a href="#"><span data-text="Кнопка4">Кнопка4</span></a>
+        </nav>
+    </header>
 
-    <!-- Блок 2 - Основная информация -->
-    <section id="block2" class="block">
-        <div class="content">
-            <div class="section-header">
-                <h2 class="section-title">Почему наш подход работает лучше?</h2>
-                <p class="section-subtitle">Мы не просто обучаем — мы интегрируем знания в ваши бизнес-процессы</p>
-            </div>
-
-            <div class="approach-grid">
-                <!-- Карточка 1 -->
-                <div class="approach-card">
-                    <div class="card-icon">1</div>
-                    <div class="card-content">
-                        <h3>Обучение на реальных процессах</h3>
-                        <p>Программы, основанные на ваших рабочих процессах, а не абстрактных теориях</p>
-                        <ul class="benefits-list">
-                            <li><span>Сокращение времени адаптации на 40-60%</span></li>
-                            <li><span>Только релевантные знания без "воды"</span></li>
-                            <li><span>Мгновенное применение навыков в работе</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Карточка 2 -->
-                <div class="approach-card card-accent">
-                    <div class="card-icon">2</div>
-                    <div class="card-content">
-                        <h3>Полный цикл внедрения</h3>
-                        <p>Комплексное решение от анализа до оценки результатов</p>
-                        <div class="process-steps">
-                            <div class="step">Анализ процессов</div>
-                            <div class="step-arrow">→</div>
-                            <div class="step">Разработка системы</div>
-                            <div class="step-arrow">→</div>
-                            <div class="step">Создание материалов</div>
-                            <div class="step-arrow">→</div>
-                            <div class="step">Обучение</div>
-                            <div class="step-arrow">→</div>
-                            <div class="step">Оценка эффективности</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Карточка 3 -->
-                <div class="approach-card">
-                    <div class="card-icon">3</div>
-                    <div class="card-content">
-                        <h3>Гибкие форматы</h3>
-                        <p>Оптимальное сочетание методов для каждого бизнеса</p>
-                        <div class="format-tags">
-                            <span class="tag">Очные тренинги</span>
-                            <span class="tag">Электронные курсы</span>
-                            <span class="tag">Фасилитационные сессии</span>
-                            <span class="tag">Наставничество</span>
-                            <span class="tag">Микрообучение</span>
-                            <span class="tag">Геймификация</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="results-container">
-                <div class="results-content">
-                    <h3>Измеримые результаты</h3>
-                    <div class="metrics-grid">
-                        <div class="metric">
-                            <div class="metric-value">60%</div>
-                            <div class="metric-label">сокращение времени адаптации</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">2.5x</div>
-                            <div class="metric-label">рост скорости вхождения в роль</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">85%</div>
-                            <div class="metric-label">удовлетворенность сотрудников</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="hero">
+        <div class="hero-gif">
+            <img src="1.gif" alt="Background animation" class="gif-background">
         </div>
-        <a href="#block3" class="scroll-down2">↓</a>
-    </section>
-
-    <!-- Блок 3 - Призыв к действию -->
-    <section id="block3" class="block">
-        <div class="content">
-            <h2>С нами ваш персонал быстро включается в работу</h2>
-            <p>Обучение становится инструментом роста бизнеса, а не формальностью</p>
-            <div id="contact">
-                <a href="#" class="btn btn-outline">Примеры решений</a>
-                <a href="#" class="btn">Оставить заявку</a>
-            </div>
-            <p style="margin-top: 40px;">Консалтинговая компания Академия HR процессов — обучение, которое работает</p>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInUp">Оптимизируйте адаптацию персонала с AdaptPro</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">AdaptPro создает единый, повторяемый и контролируемый процесс адаптации для всех должностей и отделов. Это основа эффективного HR-менеджмента.</p>
+            <a href="#" class="cta-button animate__animated animate__fadeInUp animate__delay-2s">
+                <span>Узнать больше</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
         </div>
     </section>
 
+    <section class="hr-infographic">
+        <div class="hr-container">
+            <div class="hr-visual">
+                <div class="hr-image-wrapper">
+                    <img src="2.png" alt="HR-менеджмент в AdaptPro" class="hr-image" loading="lazy">
+                    <div class="hr-image-overlay"></div>
+                    <div class="hr-image-highlight"></div>
+                </div>
+            </div>
 
-    <!-- Модальное окно -->
-<div id="applicationModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
+            <div class="hr-content">
+                <h2 class="hr-title">Инновационный подход к управлению талантами</h2>
+                <p class="hr-description">AdaptPro трансформирует HR-процессы в стратегический актив компании, объединяя технологии и человекоцентричный подход.</p>
 
-      <!-- Шаг 1: Первый вопрос -->
-      <div class="modal-step step-1 active">
-        <h3>Как бы вы описали текущий процесс адаптации новых сотрудников в вашей компании?</h3>
-        <div class="options-container">
-          <button class="option-btn" data-value="structured">У нас есть структурированная система адаптации</button>
-          <button class="option-btn" data-value="partial">Есть некоторые элементы, но нет системы</button>
-          <button class="option-btn" data-value="none">Фактически отсутствует, сотрудники учатся сами</button>
-        </div>
-        <div class="modal-footer">
-          <button class="next-btn" disabled>Ответить</button>
-        </div>
-      </div>
+                <div class="hr-features">
+                    <div class="hr-feature-card">
+                        <div class="hr-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 17v-2a4 4 0 014-4h4m4 0h2a4 4 0 014 4v2m-8-8a4 4 0 100-8 4 4 0 000 8z"/>
+                            </svg>
+                        </div>
+                        <h3>Умный подбор</h3>
+                        <p>AI-алгоритмы для точного поиска кандидатов и сокращения времени найма на 40%</p>
+                    </div>
 
-      <!-- Шаг 2: Второй вопрос -->
-      <div class="modal-step step-2">
-        <h3>Какой основной вызов вы видите в обучении персонала?</h3>
-        <div class="options-container">
-          <button class="option-btn" data-value="time">Не хватает времени на обучение</button>
-          <button class="option-btn" data-value="resources">Не хватает ресурсов/материалов</button>
-          <button class="option-btn" data-value="engagement">Сложно удержать внимание сотрудников</button>
-        </div>
-        <div class="modal-footer">
-          <button class="prev-btn">Назад</button>
-          <button class="next-btn" disabled>Ответить</button>
-        </div>
-      </div>
+                    <div class="hr-feature-card">
+                        <div class="hr-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/>
+                            </svg>
+                        </div>
+                        <h3>Развитие команд</h3>
+                        <p>Персонализированные планы развития и программы наставничества</p>
+                    </div>
 
-      <!-- Шаг 3: Третий вопрос -->
-      <div class="modal-step step-3">
-        <h3>Какой результат от внедрения системы обучения для вас наиболее важен?</h3>
-        <div class="options-container">
-          <button class="option-btn" data-value="speed">Ускорение адаптации новых сотрудников</button>
-          <button class="option-btn" data-value="quality">Повышение качества работы</button>
-          <button class="option-btn" data-value="retention">Снижение текучести кадров</button>
-        </div>
-        <div class="modal-footer">
-          <button class="prev-btn">Назад</button>
-          <button class="next-btn" disabled>Ответить</button>
-        </div>
-      </div>
+                    <div class="hr-feature-card">
+                        <div class="hr-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                        <h3>Аналитика эффективности</h3>
+                        <p>Реальные метрики продуктивности и вовлеченности персонала</p>
+                    </div>
 
-      <!-- Шаг 4: Форма обратной связи -->
-      <div class="modal-step step-4">
-        <h3>Оставьте контакты для обратной связи</h3>
-        <form id="feedbackForm">
-          <div class="form-group">
-            <input type="text" id="name" name="name" required placeholder="Ваше имя">
-          </div>
-          <div class="form-group">
-            <input type="email" id="email" name="email" required placeholder="Email">
-          </div>
-          <div class="form-group">
-            <input type="tel" id="phone" name="phone" required placeholder="Телефон">
-          </div>
-          <div class="form-group">
-            <input type="text" id="company" name="company" placeholder="Компания (необязательно)">
-          </div>
-          <div class="form-group">
-            <textarea id="message" name="message" placeholder="Дополнительная информация (необязательно)"></textarea>
-          </div>
-          <div class="form-footer">
-            <button type="button" class="prev-btn">Назад</button>
-            <button type="submit" class="submit-btn">Отправить заявку</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Шаг 5: Благодарность -->
-      <div class="modal-step step-5">
-        <div class="success-message">
-          <svg viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" />
-          </svg>
-          <h3>Спасибо за ваши ответы!</h3>
-          <p>Мы свяжемся с вами в течение 24 часов, чтобы обсудить индивидуальное решение для вашей компании.</p>
-          <button class="close-success">Закрыть</button>
+                    <div class="hr-feature-card">
+                        <div class="hr-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>Корпоративная культура</h3>
+                        <p>Инструменты для формирования и измерения корпоративных ценностей</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <script src="scripts.js"></script>
+    </section>
+
+    <script src="scripts.js"></script>
 </body>
 </html>

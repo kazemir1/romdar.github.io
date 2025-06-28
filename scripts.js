@@ -1,148 +1,165 @@
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.classList.remove('transparent-header');
+        header.classList.add('scrolled');
+    } else {
+        header.classList.add('transparent-header');
+        header.classList.remove('scrolled');
+    }
+});
+
+// Параллакс эффект для кнопок
+document.querySelectorAll('nav a').forEach(link => {
+    const text = link.querySelector('span');
+    const letters = text.textContent.split('');
+
+    text.innerHTML = letters.map(letter =>
+        `<span class="letter" style="transition-delay: ${Math.random()*0.1}s">${letter}</span>`
+    ).join('');
+
+    link.addEventListener('mouseenter', () => {
+        link.querySelectorAll('.letter').forEach(letter => {
+            letter.style.transform = 'translateY(-100%) rotateX(90deg)';
+        });
+    });
+
+    link.addEventListener('mouseleave', () => {
+        link.querySelectorAll('.letter').forEach(letter => {
+            letter.style.transform = 'translateY(0) rotateX(0)';
+        });
+    });
+});
+
+
+
+// Анимация появления при скролле
 document.addEventListener('DOMContentLoaded', function() {
-    // Элементы модального окна
-    const modal = document.getElementById('applicationModal');
-    const modalContent = document.querySelector('.modal-content');
-    const closeModal = document.querySelector('.close-modal');
-    const closeSuccess = document.querySelector('.close-success');
+    const hrSection = document.querySelector('.hr-infographic');
+    const hrImage = document.querySelector('.hr-image');
+    const hrTitle = document.querySelector('.hr-title');
+    const hrDescription = document.querySelector('.hr-description');
+    const hrFeatureCards = document.querySelectorAll('.hr-feature-card');
 
-    // Находим кнопки "Оставить заявку" по тексту
-    const allButtons = document.querySelectorAll('.btn');
-    const applicationBtns = Array.from(allButtons).filter(btn =>
-      btn.textContent.trim() === "Оставить заявку"
-    );
+    // Загрузка изображения
+    if (hrImage) {
+        const img = new Image();
+        img.src = hrImage.src;
+        img.onload = function() {
+            hrImage.classList.add('hr-image-loaded');
+        };
+    }
 
-    // Элементы шагов
-    const steps = document.querySelectorAll('.modal-step');
-    const step1 = document.querySelector('.step-1');
-
-    // Кнопки
-    const optionBtns = document.querySelectorAll('.option-btn');
-    const nextBtns = document.querySelectorAll('.next-btn');
-    const prevBtns = document.querySelectorAll('.prev-btn');
-
-    // Форма
-    const feedbackForm = document.getElementById('feedbackForm');
-
-    // Данные формы
-    const formData = {
-      question1: null,
-      question2: null,
-      question3: null,
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      message: ''
+    const observerOptions = {
+        threshold: 0.2
     };
 
-    // Открытие модального окна
-    function openModal() {
-      document.body.style.overflow = 'hidden';
-      modal.style.display = 'flex';
-      setTimeout(() => {
-        modal.classList.add('show');
-      }, 10);
-      resetForm();
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Анимация заголовка и описания
+                hrTitle.classList.add('hr-title-visible');
+                hrDescription.classList.add('hr-description-visible');
+
+                // Анимация карточек
+                hrFeatureCards.forEach(card => {
+                    card.classList.add('hr-feature-card-visible');
+                });
+
+                // Параллакс эффект
+                document.addEventListener('mousemove', handleParallax);
+            }
+        });
+    }, observerOptions);
+
+    if (hrSection) {
+        observer.observe(hrSection);
     }
 
-    // Закрытие модального окна
-    function closeModalFunc() {
-      modal.classList.remove('show');
-      setTimeout(() => {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }, 300);
+    function handleParallax(e) {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        const hrImageWrapper = document.querySelector('.hr-image-wrapper');
+        if (hrImageWrapper) {
+            hrImageWrapper.style.transform = `rotateY(${x * 20 - 10}deg) rotateX(${y * -10 + 5}deg)`;
+        }
     }
 
-    // Сброс формы
-    function resetForm() {
-      steps.forEach(step => step.classList.remove('active'));
-      step1.classList.add('active');
-      optionBtns.forEach(btn => btn.classList.remove('selected'));
-      nextBtns.forEach(btn => btn.disabled = true);
+    // Плавное появление карточек при наведении
+    hrFeatureCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.3s ease-out';
+        });
+    });
+});
 
-      for (let key in formData) {
-        formData[key] = key.startsWith('question') ? null : '';
-      }
 
-      if (feedbackForm) feedbackForm.reset();
-    }
 
-    // Переход между шагами
-    function goToNextStep(currentStep) {
-      const nextStep = currentStep + 1;
-      if (nextStep > 5) return;
-      document.querySelector(`.step-${currentStep}`).classList.remove('active');
-      document.querySelector(`.step-${nextStep}`).classList.add('active');
-      modalContent.scrollTo(0, 0);
-    }
 
-    function goToPrevStep(currentStep) {
-      const prevStep = currentStep - 1;
-      if (prevStep < 1) return;
-      document.querySelector(`.step-${currentStep}`).classList.remove('active');
-      document.querySelector(`.step-${prevStep}`).classList.add('active');
-      modalContent.scrollTo(0, 0);
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileNav = document.querySelector('.mobile-nav');
 
-    // Обработчики событий
-    applicationBtns.forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        openModal();
-      });
+    mobileMenuButton.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
     });
 
-    closeModal.addEventListener('click', closeModalFunc);
-    closeSuccess.addEventListener('click', closeModalFunc);
-
-    optionBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const parent = this.closest('.options-container');
-        parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
-        const nextBtn = this.closest('.modal-step').querySelector('.next-btn');
-        nextBtn.disabled = false;
-        const step = this.closest('.modal-step').className.split(' ')[1];
-        const stepNumber = parseInt(step.replace('step-', ''));
-        formData[`question${stepNumber}`] = this.dataset.value;
-      });
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     });
 
-    nextBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const currentStep = parseInt(this.closest('.modal-step').className.split(' ')[1].replace('step-', ''));
-        goToNextStep(currentStep);
-      });
+    // Lazy load animations
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('hr-image')) {
+                    entry.target.classList.add('hr-image-loaded');
+                }
+                if (entry.target.classList.contains('hr-title')) {
+                    entry.target.classList.add('hr-title-visible');
+                }
+                if (entry.target.classList.contains('hr-description')) {
+                    entry.target.classList.add('hr-description-visible');
+                }
+                if (entry.target.classList.contains('hr-feature-card')) {
+                    entry.target.classList.add('hr-feature-card-visible');
+                }
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.hr-image, .hr-title, .hr-description, .hr-feature-card').forEach(el => {
+        observer.observe(el);
     });
 
-    prevBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const currentStep = parseInt(this.closest('.modal-step').className.split(' ')[1].replace('step-', ''));
-        goToPrevStep(currentStep);
-      });
-    });
+    // Prevent scrolling when mobile menu is open
+    document.addEventListener('scroll', function(e) {
+        if (document.body.classList.contains('no-scroll')) {
+            e.preventDefault();
+            window.scrollTo(0, 0);
+        }
+    }, { passive: false });
 
-    if (feedbackForm) {
-      feedbackForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        formData.name = document.getElementById('name').value;
-        formData.email = document.getElementById('email').value;
-        formData.phone = document.getElementById('phone').value;
-        formData.company = document.getElementById('company').value;
-        formData.message = document.getElementById('message').value;
-        console.log('Form data:', formData);
-        goToNextStep(4);
-      });
-    }
-
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) closeModalFunc();
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenuButton.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
     });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modal.style.display === 'flex') {
-        closeModalFunc();
-      }
-    });
-  });
+});
