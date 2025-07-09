@@ -163,3 +163,148 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Данные
+    const processData = {
+        1: {
+            title: "АНАЛИЗ ДОЛЖНОСТИ",
+            icon: '<i class="fas fa-search"></i>',
+            text: "ТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекст"
+        },
+        2: {
+            title: "ОПИСАНИЕ СОТРУДНИКА",
+            icon: '<i class="fas fa-user-tie"></i>',
+            text: "ТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекст"
+        },
+        3: {
+            title: "РАЗРАБОТКА МЕТОДОВ ОТБОРА",
+            icon: '<i class="fas fa-filter"></i>',
+            text: "ТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекст"
+        },
+        4: {
+            title: "ПЕРЕДАЧА ИНСТРУМЕНТОВ ОТБОРА",
+            icon: '<i class="fas fa-tools"></i>',
+            text: "ТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекст"
+        },
+        5: {
+            title: "СИСТЕМА АДАПТАЦИИ",
+            icon: '<i class="fas fa-user-plus"></i>',
+            text: "ТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекст"
+        },
+        6: {
+            title: "СИСТЕМА ОБУЧЕНИЯ И РАЗВИТИЯ",
+            icon: '<i class="fas fa-graduation-cap"></i>',
+            text: "ТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекст"
+        },
+        7: {
+            title: "СИСТЕМА МОТИВАЦИИ НА ОСНОВЕ KPI",
+            icon: '<i class="fas fa-chart-line"></i>',
+            text: "ТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекст"
+        },
+        8: {
+            title: "ЦЕЛЕПОЛАГАНИЕ И УПРАВЛЕНИЕ РЕЗУЛЬТАТИВНОСТЬЮ",
+            icon: '<i class="fas fa-bullseye"></i>',
+            text: "ТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекст ТекстТекстТекстТекстТекстТекстТекст"
+        }
+    };
+
+    // Элементы
+    const modal = document.getElementById('processModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+    const modalIcon = document.getElementById('modalIcon');
+    const closeModal = document.querySelector('.close-modal');
+    const prevArrow = document.querySelector('.prev-arrow');
+    const nextArrow = document.querySelector('.next-arrow');
+
+    let currentCard = 1;
+
+    // Открытие модальное
+    document.querySelectorAll('.process-card').forEach(card => {
+        card.addEventListener('click', function() {
+            currentCard = parseInt(this.getAttribute('data-card'));
+            updateModal(currentCard);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Закрытие модальное
+    closeModal.addEventListener('click', function() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    // Клик по фону модального
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Навигация по карточкам
+    prevArrow.addEventListener('click', function() {
+        if (currentCard > 1) {
+            currentCard--;
+            updateModal(currentCard);
+        }
+    });
+
+    nextArrow.addEventListener('click', function() {
+        if (currentCard < 8) {
+            currentCard++;
+            updateModal(currentCard);
+        }
+    });
+
+    // Обновление содержимого модального окна
+    function updateModal(cardNumber) {
+        const cardData = processData[cardNumber];
+        modalTitle.textContent = cardData.title;
+        modalText.textContent = cardData.text;
+        modalIcon.innerHTML = cardData.icon;
+
+        // Скрываем/показываем кнопки навигации
+        prevArrow.style.display = cardNumber === 1 ? 'none' : 'flex';
+        nextArrow.style.display = cardNumber === 8 ? 'none' : 'flex';
+    }
+
+    // Анимация появления карточек
+    const processCards = document.querySelectorAll('.process-card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    processCards.forEach((card, index) => {
+        card.style.opacity = 0;
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        observer.observe(card);
+    });
+});
+
+
+//  sticky-блок
+setTimeout(function() {
+    document.getElementById('stickyDiscount').classList.add('active');
+}, 10000); // 25 секунд
+
+// Закрытие блока по клику на крестик
+document.getElementById('closeSticky').addEventListener('click', function() {
+    document.getElementById('stickyDiscount').classList.remove('active');
+});
+
+// "Получить скидку"
+document.querySelector('.sticky-discount-button').addEventListener('click', function() {
+
+    document.getElementById('stickyDiscount').classList.remove('active');
+});
